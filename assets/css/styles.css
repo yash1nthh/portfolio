@@ -17,34 +17,49 @@
   --sat: 66%;
   --lig: 75%;
   --second-hue: 219;
-  --first-color: hsl(var(--first-hue), var(--sat), var(--lig));
-  --first-color-alt: hsl(var(--first-hue), var(--sat), 71%); /* -4% */
-  --title-color: hsl(var(--second-hue), 15%, 95%);
+  --first-color: #306f77;  /* Custom color */
+  --first-color-alt: #26878c;  /* Slightly darker shade for accents */
+  --title-color: hsl(194, 25%, 90%);  /* Lightened for contrast */
   --text-color: hsl(var(--second-hue), 8%, 75%);
   --text-color-light: hsl(var(--second-hue), 4%, 55%);
   --body-color: hsl(var(--second-hue), 48%, 8%);
   --container-color: hsl(var(--second-hue), 32%, 12%);
 
-  /*========== Font and typography ==========*/
-  /*.5rem = 8px | 1rem = 16px ...*/
-  --body-font: "Poppins", sans-serif;
-  --biggest-font-size: 1.75rem;
-  --h1-font-size: 1.5rem;
-  --h2-font-size: 1.25rem;
-  --h3-font-size: 1rem;
-  --normal-font-size: 0.938rem;
-  --small-font-size: 0.813rem;
-  --smaller-font-size: 0.75rem;
-  --tiny-font-size: 0.625rem;
+ /*========== Font and typography ==========*/
+/*.5rem = 8px | 1rem = 16px ...*/
+--body-font: "Poppins", sans-serif;  /* Main body font */
+--body-cursive-font: "Dancing Script", cursive;  /* Cursive font for headers and emphasis */
+--biggest-font-size: 2.25rem;  /* Larger size for the most important headings */
+--h1-font-size: 2.125rem;  /* Bigger font size for main headings */
+--h2-font-size: 1.75rem;  /* Slightly smaller font size for secondary headings */
+--h3-font-size: 1.625rem;  /* Standard font size for subheadings */
+--normal-font-size: 1.125rem;  /* Slightly larger base font for improved readability */
+--small-font-size: 1rem;  /* Standard small size for captions or side text */
+--smaller-font-size: 0.875rem;  /* A more readable small size */
+--tiny-font-size: 0.75rem;  /* Very small text for fine print or disclaimers */
 
-  /*========== Font weight ==========*/
-  --font-medium: 500;
-  --font-semibold: 600;
+/*========== Font weight ==========*/
+--font-medium: 500;  /* Medium weight for regular text */
+--font-semibold: 600;  /* Heavier weight for subheadings and important text */
+--font-bold: 700;  /* Bolder weight for more emphasis */
 
-  /*========== z index ==========*/
-  --z-tooltip: 10;
-  --z-fixed: 100;
-  --z-modal: 1000;
+/*========== z index ==========*/
+--z-tooltip: 10;  /* Layer for tooltips */
+--z-fixed: 100;  /* Layer for fixed elements like headers */
+--z-modal: 1050;  /* Layer for modal windows, slightly higher */
+
+/*========== Custom Cursive Styles ==========*/
+h1, h2, h3 {
+  font-family: var(--body-cursive-font), var(--body-font); /* Cursive style for headers */
+}
+
+button, .button, .active-work {
+  font-family: var(--body-cursive-font), var(--body-font); /* Cursive style for buttons */
+}
+
+p, .text, .footer__copy {
+  font-family: var(--body-font); /* Regular font for body text */
+}
 }
 
 /* Responsive typography */
@@ -183,6 +198,7 @@ body.light-theme {
 .light-theme::-webkit-scrollbar {
   background-color: hsl(var(--second-hue), 8%, 80%);
 }
+
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
   max-width: 968px;
@@ -342,7 +358,7 @@ body.light-theme {
     hsla(var(--first-hue), var(--sat), var(--lig), 0.1)
   );
 
-  border-radius: 10rem 10rem 1rem 1rem;
+  border-radius: 0rem 5rem 10rem 10rem;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -480,55 +496,81 @@ body.light-theme {
 
 /*=============== SKILLS ===============*/
 .skills__container {
-  row-gap: 2rem;
-  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
 .skills__content {
-  background-color: var(--container-color);
-  padding: 1.5rem;
-  border-radius: 1.25rem;
-}
-
-.skills__title {
-  font-size: var(--normal-font-size);
-  font-weight: var(--font-medium);
-  color: var(--first-color);
-  text-align: center;
-  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .skills__box {
   display: flex;
-  justify-content: center;
-  column-gap: 2.5rem;
-}
-
-.skills__group {
-  display: grid;
-  align-content: flex-start;
-  row-gap: 1rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-evenly;
 }
 
 .skills__data {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
   display: flex;
-  column-gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
 }
 
-.skills .bxs-badge-check {
-  font-size: 1rem;
-  color: var(--first-color);
+.skills__data:hover {
+  filter: grayscale(0%);
+}
+
+.skills__data::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #7dd0df, transparent, transparent, #87d2fd);
+  background-size: 200% 200%;
+  animation: flowBorder 2s linear infinite;
+  z-index: -1;
+}
+
+@keyframes flowBorder {
+  0% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+.skills__data:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.skills__icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
 }
 
 .skills__name {
-  font-size: var(--normal-font-size);
-  font-weight: var(--font-medium);
-  line-height: 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1b2bb6;
 }
 
-.skills__level {
-  font-size: var(--small-font-size);
-}
+
 
 /*=============== SERVICES ===============*/
 .services__container {
@@ -838,9 +880,8 @@ body.light-theme {
 .contact__form-area textarea {
   resize: none;
 }
-/*=============== FOOTER ===============*/
 .footer {
-  background-color: var(--first-color);
+  background: linear-gradient(135deg, #4b6cb7, #182848); /* Gradient for dark mode */
 }
 
 .footer__container {

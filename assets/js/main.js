@@ -6,6 +6,17 @@ function scrollHeader() {
   else header.classList.remove("scroll-header");
 }
 window.addEventListener("scroll", scrollHeader);
+// mail
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+      .then(function(response) {
+          console.log('Message sent successfully:', response);
+      }, function(error) {
+          console.log('Error sending message:', error);
+      });
+});
 
 /*=============== SERVICES MODAL ===============*/
 // Get the modal
