@@ -17,7 +17,7 @@
   --sat: 66%;
   --lig: 75%;
   --second-hue: 219;
-  --first-color: #306f77;  /* Custom color */
+  --first-color: #3998a4;  /* Custom color */
   --first-color-alt: #26878c;  /* Slightly darker shade for accents */
   --title-color: hsl(194, 25%, 90%);  /* Lightened for contrast */
   --text-color: hsl(var(--second-hue), 8%, 75%);
